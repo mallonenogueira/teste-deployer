@@ -23,12 +23,12 @@ jobs:
           git push
       
       - run: |
+          SRC_URL="https://raw.githubusercontent.com/mallonenogueira/teste-deployer/master/deploy/${GITHUB_SHA::8}.web.js" 
           curl --request PATCH \
-               --url https://import-map-deployer-mallone.herokuapp.com/services \
-               --header 'content-type: application/json' \
-               --data '{
-                  "service": "my-service",
-                  "url": "https://raw.githubusercontent.com/mallonenogueira/teste-deployer/master/deploy/${GITHUB_SHA::8}.web.js"
-                 }'
-        
+          --url https://import-map-deployer-mallone.herokuapp.com/services \
+          --header 'content-type: application/json' \
+          --data '{
+              "service": "my-service",
+              "url": "${SRC_URL}"
+            }'
       
