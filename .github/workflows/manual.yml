@@ -13,13 +13,22 @@ jobs:
 
     steps:
       - uses: actions/checkout@v2
+        
       - run: |
-          rm -rf deploy
-          mkdir deploy
           cat web.js > deploy/${GITHUB_SHA::8}.web.js
           git config user.name github-actions
           git config user.email github-actions@github.com
           git add .
           git commit -m "generated"
           git push
+      
+      - run: |
+          curl --request PATCH \
+               --url https://import-map-deployer-mallone.herokuapp.com/services \
+               --header 'content-type: application/json' \
+               --data '{
+                  "service": "my-service",
+                  "url": "https://raw.githubusercontent.com/mallonenogueira/teste-deployer/master/deploy/${GITHUB_SHA::8}.web.js"
+                 }'
+        
       
