@@ -14,10 +14,12 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       
-      - run: echo "::set-env name=SHORT_SHA::${GITHUB_SHA::8}"
+      - run: ::set-env name=SHORT_SHA::${GITHUB_SHA::8}
+      - run: ::set-env name=FILE::deploy/${{ env.SHORT_SHA }}.web.js
+      - run: ::set-env name=FILE_URL::"https://raw.githubusercontent.com/mallonenogueira/teste-deployer/master/deploy/${{ env.SHORT_SHA }}.web.js"
         
       - run: |
-          cat web.js > deploy/$SHORT_SHA.web.js
+          cat web.js > 
           git config user.name github-actions
           git config user.email github-actions@github.com
           git add .
@@ -32,7 +34,6 @@ jobs:
         env:
           method: '"PATCH"'
           headers: '{ "content-type": "application/json" }'
-          url: '"https://raw.githubusercontent.com/mallonenogueira/teste-deployer/master/deploy/${{ env.SHORT_SHA }}.web.js"'
-          body:  '{ "service": "my-service", "url": ${{ env.url }} }'
+          body:  '{ "service": "my-service", "url": ${{ env.FILE_URL }} }'
 
       
