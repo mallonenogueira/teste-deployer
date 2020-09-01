@@ -15,12 +15,13 @@ jobs:
       - uses: actions/checkout@v2
       
       - run: echo "::set-env name=SHORT_SHA::${GITHUB_SHA::8}"
+      - run: echo "::set-env name=SHORT_SHA::${GITHUB_SHA::8}"
       - run: echo "::set-env name=FILE::deploy/$SHORT_SHA.web.js"
-      - run: echo "::set-env name=FILE_URL::https://raw.githubusercontent.com/mallonenogueira/teste-deployer/master/deploy/$SHORT_SHA.web.js"
+      - run: echo "::set-env name=FILE_URL::https://raw.githubusercontent.com/mallonenogueira/teste-deployer/${GITHUB_REF##*/}/deploy/$SHORT_SHA.web.js"
     
       - run: |
-          case "$GITHUB_REF" in
-            "refs/heads/master") echo "::set-env name=URL_ENV::prod" ;;
+          case "${GITHUB_REF##*/}" in
+            "master") echo "::set-env name=URL_ENV::prod" ;;
             *) echo "::set-env name=URL_ENV::dev" ;;
           esac
           
