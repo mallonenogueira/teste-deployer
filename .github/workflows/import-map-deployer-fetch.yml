@@ -20,6 +20,7 @@ jobs:
       
       - run: |
           if [$GITHUB_REF == "refs/head/master"]
+          then
             echo "::set-env name=URL_ENV::prod"
           else
             echo "::set-env name=URL_ENV::dev"
