@@ -15,7 +15,6 @@ jobs:
       - uses: actions/checkout@v2
       
       - run: echo "::set-env name=SHORT_SHA::${GITHUB_SHA::8}"
-      - run: echo "::set-env name=SHORT_SHA::${GITHUB_SHA::8}"
       - run: echo "::set-env name=FILE::deploy/$SHORT_SHA.web.js"
       - run: echo "::set-env name=FILE_URL::https://raw.githubusercontent.com/mallonenogueira/teste-deployer/${GITHUB_REF##*/}/deploy/$SHORT_SHA.web.js"
     
