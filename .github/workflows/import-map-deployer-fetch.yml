@@ -33,6 +33,6 @@ jobs:
           method: '"PATCH"'
           headers: '{ "content-type": "application/json" }'
           url: '"https://raw.githubusercontent.com/mallonenogueira/teste-deployer/master/deploy/${{ env.SHORT_SHA }}.web.js"'
-          body:  '{ "service": "my-service", "url": ${{ env.url}} }'
+          body:  '{ "service": "my-service", "url": ${{ env.url }} }'
 
       
