@@ -19,7 +19,7 @@ jobs:
       - run: echo "::set-env name=FILE_URL::https://raw.githubusercontent.com/mallonenogueira/teste-deployer/master/deploy/$SHORT_SHA.web.js"
       
       - run: |
-          if [$GITHUB_REF == "refs/heads/master"]
+          if [["$GITHUB_REF" == "refs/heads/master"]]
           then
             echo "::set-env name=URL_ENV::prod"
           else
