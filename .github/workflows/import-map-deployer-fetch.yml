@@ -33,7 +33,7 @@ jobs:
           git commit -m "generated - $SHORT_SHA"
           git push
       
-      - name: Fetch import-map-deployer 📦
+      - name: Fetch import-map-deployer
         uses: JamesIves/fetch-api-data-action@releases/v1
         with:
           ENDPOINT: 'https://import-map-deployer-mallone.herokuapp.com/services?env=${{ env.URL_ENV }}'
