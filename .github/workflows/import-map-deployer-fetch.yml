@@ -38,7 +38,7 @@ jobs:
       - name: Fetch import-map-deployer 📦
         uses: JamesIves/fetch-api-data-action@releases/v1
         with:
-          ENDPOINT: https://import-map-deployer-mallone.herokuapp.com/services?env=$URL_ENV
+          ENDPOINT: 'https://import-map-deployer-mallone.herokuapp.com/services?env=${{ env.URL_ENV }}'
           CONFIGURATION: '{ "method": ${{ env.method }}, "headers": ${{ env.headers }}, "body": ${{ env.body }}}'
         env:
           method: '"PATCH"'
