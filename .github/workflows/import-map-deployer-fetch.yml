@@ -40,7 +40,7 @@ jobs:
           CONFIGURATION: '{ "method": ${{ env.method }}, "headers": ${{ env.headers }}, "body": ${{ env.body }}}'
         env:
           method: '"PATCH"'
-          headers: '{ "content-type": "application/json" }'
+          headers: '{ "content-type": "application/json", "authorization": "${{ secrets.AUTHORIZATION }}" }'
           body:  '{ "service": "my-service", "url": "${{ env.FILE_URL }}" }'
 
       
