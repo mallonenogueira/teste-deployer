@@ -10,11 +10,11 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
-    env:
-      SHORT_SHA: ${GITHUB_SHA::8}
 
     steps:
       - uses: actions/checkout@v2
+      
+      - run: echo "::set-env name=SHORT_SHA::${GITHUB_SHA::8}"
         
       - run: |
           cat web.js > deploy/$SHORT_SHA.web.js
